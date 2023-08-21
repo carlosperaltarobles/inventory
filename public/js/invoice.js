@@ -43444,8 +43444,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 
@@ -43534,7 +43532,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this3 = this;
 
       Swal({
-        title: '¿Estás seguro?',
+        title: '¿Hola?',
         text: "¡No podrás revertir esto!",
         type: 'warning',
         showCancelButton: true,

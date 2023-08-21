@@ -18,7 +18,7 @@
 			<div class="header">
 				<h2>
 					
-					Generate Report
+					Generar reporte
 					
 				</h2>
 			</div>

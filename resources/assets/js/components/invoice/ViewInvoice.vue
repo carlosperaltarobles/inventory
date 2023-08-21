@@ -65,7 +65,7 @@
               }">
                 {{ value.total_amount - value.paid_amount }}
               </td>
-              <td>{{ value.user.name }}</td>
+              <td>{{ value.user.name}}</td>
 
 
               <td>
@@ -88,19 +88,17 @@
               </td>
 
               <td>
-
                 <button @click="editInvoice(value.id)" type="button"
                   class="btn bg-blue btn-circle waves-effect waves-circle waves-float">
                   <i class="material-icons">edit</i>
                 </button>
               </td>
-
+            <!-- SI el usuario es superadministrador aparace la opcion de borrar -->
               <td>
-                <button @click="deleteInvoice(value.id)" type="button"
-                  class="btn bg-pink btn-circle waves-effect waves-circle waves-float">
-                  <i class="material-icons">delete</i>
-                </button>
-
+                  <button @click="deleteInvoice(value.id)" type="button" 
+                    class="btn bg-pink btn-circle waves-effect waves-circle waves-float">
+                    <i class="material-icons">delete</i>
+                  </button>
               </td>
 
 
@@ -206,9 +204,8 @@ export default {
     // delete vendor 
 
     deleteInvoice(id) {
-
       Swal({
-        title: '¿Estás seguro?',
+        title: '¿Hola?',
         text: "¡No podrás revertir esto!",
         type: 'warning',
         showCancelButton: true,

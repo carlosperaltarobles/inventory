@@ -282,7 +282,7 @@ import Datepicker from 'vuejs-datepicker';
 
 export default {
 
-  props: ['categorys', 'customers'],
+  props: ['categorys', 'customers',],
   mixins: [mixin],
 
   components: {

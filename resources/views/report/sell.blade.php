@@ -18,7 +18,7 @@
 			<div class="header">
 				<h2>
 					
-					Sell Report
+					Reporte de ventas
 					
 				</h2>
 
@@ -52,21 +52,21 @@
 							</tr>  			
 
 							<tr style="border: none !important;">
-								<td colspan="11" style="border: none !important;"><p style="text-align: center;font-weight: bold;">Sell Report from {{ date('j M Y',strtotime($start_date)) }} To {{ date('j M Y',strtotime($end_date)) }}</p></td>
+								<td colspan="11" style="border: none !important;"><p style="text-align: center;font-weight: bold;">Reporte De Ventas from {{ date('j M Y',strtotime($start_date)) }} To {{ date('j M Y',strtotime($end_date)) }}</p></td>
 
 							</tr>
 							<tr>
-								<th>Product</th>
+								<th>Producto</th>
 								<th>Comprobante</th>
-								<th>Sold Date</th>
-								<th>Customer</th>
-								<th>Seller</th>
-								<th>Quantity</th>
-								<th>Unit Buying Price</th>
-								<th>Unit Selling Price</th>
-								<th>Disount Importe</th>
-								<th>Total Buying Importe</th>
-								<th>Total Selling Importe</th>
+								<th>Fecha De Venta</th>
+								<th>Cliente</th>
+								<th>Vendedor</th>
+								<th>Cantidad</th>
+								<th>Precio De Compra Unitaria</th>
+								<th>Precio De Venta Unitaria</th>
+								<th>Importe De Descuento</th>
+								<th>Importe Total De La Compra</th>
+								<th>Importe Total De La Venta</th>
 							
 							</tr>
 						</thead>
@@ -94,24 +94,24 @@
 								<td>{{ date("j M Y", strtotime($value->selling_date) ) }}</td>
 								<td>{{ $value->customer->customer_name }}</td>
 								<td>{{ $value->user->name }}</td>
-								<td>{{ $value->sold_quantity }}</td>
-								<td>{{ $value->buy_price }}</td>
-								<td>{{ $value->sold_price }}</td>
-								<td>{{ $value->discount_amount }}</td>
-								<td>{{ $value->total_buy_price }}</td>
-								<td>{{ $value->total_sold_price }}</td>
+								<td>{{ '$ '.$value->sold_quantity }}</td>
+								<td>{{ '$ '.$value->buy_price }}</td>
+								<td>{{'$ '.$value->sold_price }}</td>
+								<td>{{ '$ '.$value->discount_amount }}</td>
+								<td>{{ '$ '.$value->total_buy_price }}</td>
+								<td>{{ '$ '.$value->total_sold_price }}</td>
 								
 							</tr>
 							@endforeach
 
 							<tr>
 								<th colspan="5" style="text-align: right;">Total =</th>
-								<th >{{ round($total_quantity) }}</th>
+								<th >{{ '$ '.round($total_quantity) }}</th>
 								<th ></th>
 								<th ></th>
-								<th >{{ round($total_discount) }}</th>
-								<th >{{ round($total_buy_price) }}</th>
-								<th >{{ round($total_sold_price) }}</th>
+								<th >{{ '$ '.round($total_discount) }}</th>
+								<th >{{ '$ '.round($total_buy_price) }}</th>
+								<th >{{ '$ '.round($total_sold_price) }}</th>
 							
 							</tr>
 

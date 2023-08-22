@@ -94,7 +94,7 @@
 								<td>{{ date("j M Y", strtotime($value->selling_date) ) }}</td>
 								<td>{{ $value->customer->customer_name }}</td>
 								<td>{{ $value->user->name }}</td>
-								<td>{{ '$ '.$value->sold_quantity }}</td>
+								<td>{{ $value->sold_quantity }}</td>
 								<td>{{ '$ '.$value->buy_price }}</td>
 								<td>{{'$ '.$value->sold_price }}</td>
 								<td>{{ '$ '.$value->discount_amount }}</td>
@@ -106,12 +106,12 @@
 
 							<tr>
 								<th colspan="5" style="text-align: right;">Total =</th>
-								<th >{{ '$ '.round($total_quantity) }}</th>
+								<th >{{ '$ '.round($total_quantity,2) }}</th>
 								<th ></th>
 								<th ></th>
-								<th >{{ '$ '.round($total_discount) }}</th>
-								<th >{{ '$ '.round($total_buy_price) }}</th>
-								<th >{{ '$ '.round($total_sold_price) }}</th>
+								<th >{{ '$ '.round($total_discount,2) }}</th>
+								<th >{{ '$ '.round($total_buy_price,2) }}</th>
+								<th >{{ '$ '.round($total_sold_price,2) }}</th>
 							
 							</tr>
 

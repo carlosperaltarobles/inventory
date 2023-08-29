@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Due Report</title>
+	<title>Informe de pagos pendientes</title>
 	<link href="{{ url('plugins/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -29,10 +29,10 @@
 							</tr>
 							<tr>
 								
-								<th>Customer</th>
-								<th>Total Importe</th>
-								<th>Paid Importe</th>
-								<th>Due</th>
+								<th>Cliente</th>
+								<th>Importe total</th>
+								<th>Importe pagado</th>
+								<th>Importe debido</th>
 							</tr>
 						</thead>
 						
@@ -52,17 +52,17 @@
 							<tr>
 
 								<td>{{ $value->customer->customer_name }}</td>
-								<td>{{ $value->total_amount }}</td>
-								<td>{{ $value->paid_amount }}</td>
-								<td>{{ $value->total_amount - $value->paid_amount }}</td>
+								<td>{{ '$ '.round($value->total_amount,2)}}</td>
+								<td>{{ '$ '.round($value->paid_amount,2) }}</td>
+								<td>{{'$ '.round(($value->total_amount - $value->paid_amount),2) }}</td>
 							</tr>
 							@endforeach
 
 							<tr>
 								<th  style="text-align: right;">Total =</th>
-								<th >{{ round($total_amount) }}</th>
-								<th >{{ round($total_paid) }}</th>
-								<th >{{ round($total_amount-$total_paid) }}</th>
+								<th >{{ '$ '.round($total_amount,2) }}</th>
+								<th >{{ '$ '.round($total_paid,2) }}</th>
+								<th >{{ '$ '.round($total_amount-$total_paid,2) }}</th>
 							</tr>
 
 							

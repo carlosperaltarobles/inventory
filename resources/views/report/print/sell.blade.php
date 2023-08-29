@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Sell Report</title>
+	<title>Rporte de venta</title>
 	<link href="{{ url('plugins/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -28,17 +28,17 @@
 
 							</tr>
 							<tr>
-								<th>Product</th>
+								<th>Producto</th>
 								<th>Comprobante</th>
-								<th>Sold Date</th>
-								<th>Customer</th>
-								<th>Seller</th>
-								<th>Quantity</th>
-								<th>Unit Buying Price</th>
-								<th>Unit Selling Price</th>
-								<th>Disount Importe</th>
-								<th>Total Buying Importe</th>
-								<th>Total Selling Importe</th>
+								<th>Fecha de venta</th>
+								<th>Cliente</th>
+								<th>Vendedor</th>
+								<th>Cantidad</th>
+								<th>Precio unitario de compra</th>
+								<th>Precio de venta unitario</th>
+								<th>Descuento</th>
+								<th>Importe total de las compras</th>
+								<th>Importe total de la ventas</th>
 							
 							</tr>
 						</thead>
@@ -67,11 +67,11 @@
 								<td>{{ $value->customer->customer_name }}</td>
 								<td>{{ $value->user->name }}</td>
 								<td>{{ $value->sold_quantity }}</td>
-								<td>{{ $value->buy_price }}</td>
-								<td>{{ $value->sold_price }}</td>
-								<td>{{ $value->discount_amount }}</td>
-								<td>{{ $value->total_buy_price }}</td>
-								<td>{{ $value->total_sold_price }}</td>
+								<td>{{ '$ '.$value->buy_price }}</td>
+								<td>{{ '$ '.$value->sold_price }}</td>
+								<td>{{ '$ '.$value->discount_amount }}</td>
+								<td>{{ '$ '.$value->total_buy_price }}</td>
+								<td>{{ '$ '.$value->total_sold_price }}</td>
 								
 							</tr>
 							@endforeach
@@ -81,12 +81,14 @@
 								<th >{{ round($total_quantity) }}</th>
 								<th ></th>
 								<th ></th>
-								<th >{{ round($total_discount) }}</th>
-								<th >{{ round($total_buy_price) }}</th>
-								<th >{{ round($total_sold_price) }}</th>
-							
+								<th >{{ '$ '.round($total_discount,2)}}</th>
+								<th >{{ '$ '.round($total_buy_price,2) }}</th>
+								<th >{{ '$ '.round($total_sold_price,2) }}</th>
 							</tr>
-
+							<tr>
+								<th colspan="5" style="text-align: right;">Beneficio neto total =</th>
+								<th >{{ round($total_sold_price-($total_discount+$total_buy_price),2) }}</th>
+							</tr>
 
 						</tbody>
 					</table>

@@ -45,7 +45,7 @@
 
 
 					<div class="row text-center">
-						<button type="submit" class="btn bg-teal">Get Report</button>
+						<button type="submit" class="btn bg-teal">Obtener reporte</button>
 					</div>
 
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Invoice Report</title>
+	<title>Informe de facturación</title>
 	<link href="{{ url('plugins/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -28,14 +28,14 @@
 
 							</tr>
 							<tr>
-								<th>Invoice No.</th>
-								<th>Invoice Date</th>
-								<th>Customer</th>
-								<th>Seller</th>
-								<th>Details</th>
-								<th>Total Importe</th>
-								<th>Paid Importe</th>
-								<th>Due</th>
+								<th>No. Factura</th>
+								<th>fecha de factura</th>
+								<th>Cliente</th>
+								<th>Vendedor</th>
+								<th>Detalles</th>
+								<th>Importe total</th>
+								<th>Importe pagado</th>
+								<th>Debido</th>
 							</tr>
 						</thead>
 						

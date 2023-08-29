@@ -3,7 +3,7 @@
     <div v-show="invoice_state" class="card">
       <div class="header">
         <h2 class="pull-left">
-          Update Invoice
+          Atualizar Factura
 
         </h2>
 
@@ -282,7 +282,7 @@ import Datepicker from 'vuejs-datepicker';
 
 export default {
 
-  props: ['categorys', 'customers',],
+  props: ['categorys', 'customers'],
   mixins: [mixin],
 
   components: {

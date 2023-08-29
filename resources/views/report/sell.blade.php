@@ -106,13 +106,16 @@
 
 							<tr>
 								<th colspan="5" style="text-align: right;">Total =</th>
-								<th >{{ '$ '.round($total_quantity,2) }}</th>
+								<th >{{ round($total_quantity) }}</th>
 								<th ></th>
 								<th ></th>
 								<th >{{ '$ '.round($total_discount,2) }}</th>
 								<th >{{ '$ '.round($total_buy_price,2) }}</th>
 								<th >{{ '$ '.round($total_sold_price,2) }}</th>
-							
+							</tr>
+							<tr>
+								<th colspan="5" style="text-align: right;">Beneficio neto total =</th>
+								<th >{{ round($total_sold_price-($total_discount+$total_buy_price),2) }}</th>
 							</tr>
 
 

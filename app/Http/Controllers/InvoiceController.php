@@ -16,6 +16,7 @@ use App\Payment;
 use App\Company;
 use DB;
 use Auth;
+use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 class InvoiceController extends Controller
 {
@@ -28,10 +29,10 @@ class InvoiceController extends Controller
     {
        $category = Category::orderBy('name','asc')->get();
        $customer = Customer::orderBy('customer_name','asc')->get();
-
+       //$userRol=FacadesAuth::user()->role_id;
        return view('invoice.invoice',[
         'category'=>$category,
-        'customer'=>$customer
+        'customer'=>$customer,
         ]);
     }
 

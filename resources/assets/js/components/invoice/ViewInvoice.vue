@@ -1,7 +1,8 @@
 <template>
+
   <div class="wrap">
     <div class="body" style="position: relative;">
-      <update-invoice :categorys="categorys" :customers="customers"></update-invoice>
+      <update-invoice :categorys="categorys" :customers="customers" :userLog="userLog"></update-invoice>
       <create-payment></create-payment>
       <view-payment></view-payment>
 
@@ -53,6 +54,7 @@
             </tr>
           </thead>
           <tbody>
+            <td>hola {{userLog}}</td>
             <tr v-for="(value, index) in invoices.data">
               <td>{{ value.id }}</td>
               <td>{{ value.sell_date | moment('LL') }}</td>
@@ -94,8 +96,8 @@
                 </button>
               </td>
             <!-- SI el usuario es superadministrador aparace la opcion de borrar -->
-              <td>
-                  <button @click="deleteInvoice(value.id)" type="button" 
+              <td v-if="">
+                  <button @click="deleteInvoice(value.id)" type="button"
                     class="btn bg-pink btn-circle waves-effect waves-circle waves-float">
                     <i class="material-icons">delete</i>
                   </button>
@@ -166,7 +168,8 @@ export default {
   },
   created() {
 
-
+    console.log(this.userLog);
+    console.log(this.customers)
     // this.hello();
 
     var _this = this;

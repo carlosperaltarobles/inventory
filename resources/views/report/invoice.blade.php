@@ -18,7 +18,7 @@
 			<div class="header">
 				<h2>
 					
-					Invoice Report
+					Informe de facturas
 					
 				</h2>
 
@@ -56,14 +56,14 @@
 
 							</tr>
 							<tr>
-								<th>Invoice No.</th>
-								<th>Invoice Date</th>
-								<th>Customer</th>
-								<th>Seller</th>
-								<th>Details</th>
-								<th>Total Importe</th>
-								<th>Paid Importe</th>
-								<th>Due</th>
+								<th>No. Factura</th>
+								<th>fecha de factura</th>
+								<th>Cliente</th>
+								<th>Vendedor</th>
+								<th>Detalles</th>
+								<th>Importe total</th>
+								<th>Importe pagado</th>
+								<th>Debido</th>
 							</tr>
 						</thead>
 						
@@ -89,17 +89,17 @@
 								<td><a href="{{ route('invoice.show',$value->id) }}" target="_blank" type="button" class="btn bg-orange btn-circle waves-effect waves-circle waves-float">
                                          <i class="material-icons">print</i>
                                      </a></td>
-								<td>{{ $value->total_amount }}</td>
-								<td>{{ $value->paid_amount }}</td>
-								<td>{{ $value->total_amount - $value->paid_amount }}</td>
+								<td>{{ '$ '.round($value->total_amount,2) }}</td>
+								<td>{{ '$ '.round($value->paid_amount ,2)}}</td>
+								<td>{{ '$ '.round(($value->total_amount - $value->paid_amount),2) }}</td>
 							</tr>
 							@endforeach
 
 							<tr>
 								<th colspan="5" style="text-align: right;">Total =</th>
-								<th >{{ round($total_amount) }}</th>
-								<th >{{ round($total_paid) }}</th>
-								<th >{{ round($total_amount-$total_paid) }}</th>
+								<th >{{ '$ '.round($total_amount,2) }}</th>
+								<th >{{ '$ '.round($total_paid,2) }}</th>
+								<th >{{ '$ '.round($total_amount-$total_paid,2) }}</th>
 							</tr>
 
 							

@@ -56,11 +56,11 @@
 
 							</tr>
 							<tr>
-								<th>Product</th>
-								<th>Quantity</th>
-								<th>Total Selling Importe</th>
-								<th>Total Buying Importe</th>
-								<th>Profit</th>
+								<th>Producto</th>
+								<th>Cantidad</th>
+								<th>Importe total de las ventas</th>
+								<th>Importe total de la compra</th>
+								<th>Beneficio</th>
 							
 							</tr>
 						</thead>

@@ -43486,7 +43486,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       format: 'yyyy-MM-dd',
       url: base_url + 'invoice/',
       isLoading: true,
-      userRol: this.userrol
+      userrol: ''
     };
   },
   created: function created() {
@@ -43558,9 +43558,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       __WEBPACK_IMPORTED_MODULE_0__vue_asset__["EventBus"].$emit('create-payment', id);
     },
-    ViewPayment: function ViewPayment(id) {
+    ViewPayment: function ViewPayment(id, userrol) {
 
-      __WEBPACK_IMPORTED_MODULE_0__vue_asset__["EventBus"].$emit('view-payment', id);
+      __WEBPACK_IMPORTED_MODULE_0__vue_asset__["EventBus"].$emit('view-payment', id, userrol);
     },
 
 
@@ -45763,10 +45763,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-
 				name: 'view-payment',
 				mixins: [__WEBPACK_IMPORTED_MODULE_1__mixin_js__["a" /* default */], __WEBPACK_IMPORTED_MODULE_2__moment_mixin_js__["a" /* default */]],
-
 				data: function data() {
 
 								return {
@@ -45785,17 +45783,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 																				customer_name: ''
 																}
 												},
-
 												payments: [],
-												total_paid: 0
+												total_paid: 0,
+												userrol: ''
 								};
 				},
 				created: function created() {
 
 								var _this = this;
 
-								__WEBPACK_IMPORTED_MODULE_0__vue_asset__["EventBus"].$on('view-payment', function (id) {
+								__WEBPACK_IMPORTED_MODULE_0__vue_asset__["EventBus"].$on('view-payment', function (id, userrol) {
 												_this.id = id;
+												_this.userrol = userrol;
 												_this.getPayment(id);
 								});
 				},
@@ -45910,7 +45909,23 @@ var render = function() {
                     "table",
                     { staticClass: "table table-bordered table-condensed" },
                     [
-                      _vm._m(0),
+                      _c("thead", [
+                        _c("tr", [
+                          _c("th", [_vm._v("Fecha")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("Importe")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("Pago con")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("Informacion banco")]),
+                          _vm._v(" "),
+                          _c("th", [_vm._v("Recibido por")]),
+                          _vm._v(" "),
+                          _vm.userrol === 2
+                            ? _c("th", [_vm._v("Eliminar")])
+                            : _vm._e()
+                        ])
+                      ]),
                       _vm._v(" "),
                       _c(
                         "tbody",
@@ -45932,26 +45947,30 @@ var render = function() {
                             _vm._v(" "),
                             _c("td", [_vm._v(_vm._s(payment.user.name))]),
                             _vm._v(" "),
-                            _c("td", [
-                              _c(
-                                "button",
-                                {
-                                  staticClass:
-                                    "btn bg-pink btn-circle waves-effect waves-circle waves-float",
-                                  attrs: { type: "button" },
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.deletePayment(payment.id)
-                                    }
-                                  }
-                                },
-                                [
-                                  _c("i", { staticClass: "material-icons" }, [
-                                    _vm._v("delete")
-                                  ])
-                                ]
-                              )
-                            ])
+                            _vm.userrol === 2
+                              ? _c("td", [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass:
+                                        "btn bg-pink btn-circle waves-effect waves-circle waves-float",
+                                      attrs: { type: "button" },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.deletePayment(payment.id)
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "i",
+                                        { staticClass: "material-icons" },
+                                        [_vm._v("delete")]
+                                      )
+                                    ]
+                                  )
+                                ])
+                              : _vm._e()
                           ])
                         }),
                         0
@@ -46012,28 +46031,7 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", [_vm._v("Fecha")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Importe")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Pago con")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Informacion")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Recibido por")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Eliminar")])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -46057,11 +46055,7 @@ var render = function() {
       { staticClass: "body", staticStyle: { position: "relative" } },
       [
         _c("update-invoice", {
-          attrs: {
-            categorys: _vm.categorys,
-            customers: _vm.customers,
-            userLog: _vm.userLog
-          }
+          attrs: { categorys: _vm.categorys, customers: _vm.customers }
         }),
         _vm._v(" "),
         _c("create-payment"),
@@ -46255,7 +46249,7 @@ var render = function() {
                               on: {
                                 click: function($event) {
                                   $event.preventDefault()
-                                  return _vm.ViewPayment(value.id)
+                                  return _vm.ViewPayment(value.id, _vm.userrol)
                                 }
                               }
                             },

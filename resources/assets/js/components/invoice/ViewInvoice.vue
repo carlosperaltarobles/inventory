@@ -2,7 +2,7 @@
 
   <div class="wrap">
     <div class="body" style="position: relative;">
-      <update-invoice :categorys="categorys" :customers="customers" :userLog="userLog"></update-invoice>
+      <update-invoice :categorys="categorys" :customers="customers"></update-invoice>
       <create-payment></create-payment>
       <view-payment></view-payment>
 
@@ -70,7 +70,7 @@
 
 
               <td>
-                <a @click.prevent="ViewPayment(value.id)" href="" data-toggle="modal" data-target="#viewPayment"
+                <a @click.prevent="ViewPayment(value.id,userrol)" href="" data-toggle="modal" data-target="#viewPayment"
                   class="btn bg-cyan btn-circle waves-effect waves-circle waves-float"><i
                     class="material-icons">remove_red_eye</i></a>
               </td>
@@ -160,7 +160,7 @@ export default {
       format: 'yyyy-MM-dd',
       url: base_url + 'invoice/',
       isLoading: true,
-      userRol: this.userrol,
+      userrol: ''
     }
 
 
@@ -240,9 +240,9 @@ export default {
       EventBus.$emit('create-payment', id);
     },
 
-    ViewPayment(id) {
+    ViewPayment(id,userrol) {
 
-      EventBus.$emit('view-payment', id);
+      EventBus.$emit('view-payment', id,userrol);
 
     },
 

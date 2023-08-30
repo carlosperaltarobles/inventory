@@ -19,9 +19,9 @@
 										<th>Fecha</th>
 										<th>Importe</th>
 										<th>Pago con</th>
-										<th>Informacion</th>
+										<th>Informacion banco</th>
 										<th>Recibido por</th>
-										<th>Eliminar</th>
+										<th v-if="userrol===2">Eliminar</th>
 									</tr>
 
 
@@ -34,7 +34,7 @@
 										<td>{{ payment.paid_in }}</td>
 										<td>{{ payment.bank_information }}</td>	
 										<td>{{ payment.user.name }}</td>	
-										<td>
+										<td v-if="userrol===2">
 											<button @click="deletePayment(payment.id)" type="button" class="btn bg-pink btn-circle waves-effect waves-circle waves-float">
 												<i class="material-icons">delete</i>
 											</button> </td>	
@@ -80,10 +80,8 @@
 		import mixin from '../../mixin.js';
 		import MomentMixin from '../../moment_mixin.js';
 		export default{
-
 			name : 'view-payment',
 			mixins : [mixin,MomentMixin],
-
 			data(){
 
 				return { 
@@ -102,10 +100,9 @@
 							customer_name : '',
 						},
 					},
-
-
 					payments : [],
 					total_paid : 0,
+					userrol: '',
 				}
 			},
 
@@ -113,8 +110,9 @@
 
 				var  _this = this;
 
-				EventBus.$on('view-payment',function(id){
+				EventBus.$on('view-payment',function(id,userrol){
 					_this.id = id;
+					_this.userrol = userrol;
 					_this.getPayment(id);
 
 				});

@@ -26,7 +26,8 @@
                 </h2>
             </div>
 
-            <view-invoice :categorys="{{ $category }}" :customers="{{ $customer }}"></view-invoice>
+            <view-invoice :categorys="{{ $category }}" :customers="{{ $customer }}" :userrol="{{$userRol}}"></view-invoice>
+          
 
         </div>
     </div>

@@ -50,11 +50,10 @@
               <th>Abonar</th>
               <th>Imprimir</th>
               <th>Editar</th>
-              <th>Eliminar</th>
+              <th  v-if="userrol===2">Eliminar</th>
             </tr>
           </thead>
           <tbody>
-            <td>hola {{userLog}}</td>
             <tr v-for="(value, index) in invoices.data">
               <td>{{ value.id }}</td>
               <td>{{ value.sell_date | moment('LL') }}</td>
@@ -96,7 +95,7 @@
                 </button>
               </td>
             <!-- SI el usuario es superadministrador aparace la opcion de borrar -->
-              <td v-if="">
+              <td v-if="userrol===2">
                   <button @click="deleteInvoice(value.id)" type="button"
                     class="btn bg-pink btn-circle waves-effect waves-circle waves-float">
                     <i class="material-icons">delete</i>
@@ -134,7 +133,7 @@ import ViewPayment from './ViewPayment.vue';
 
 export default {
 
-  props: ['categorys', 'customers'],
+  props: ['categorys', 'customers','userrol'],
 
   mixins: [mixin, MomentMixin],
 
@@ -161,15 +160,14 @@ export default {
       format: 'yyyy-MM-dd',
       url: base_url + 'invoice/',
       isLoading: true,
-
+      userRol: this.userrol,
     }
 
 
   },
   created() {
 
-    console.log(this.userLog);
-    console.log(this.customers)
+    console.log(this.userrol==2);
     // this.hello();
 
     var _this = this;

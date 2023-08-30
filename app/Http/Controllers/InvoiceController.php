@@ -29,10 +29,11 @@ class InvoiceController extends Controller
     {
        $category = Category::orderBy('name','asc')->get();
        $customer = Customer::orderBy('customer_name','asc')->get();
-       //$userRol=FacadesAuth::user()->role_id;
+       $userRol=FacadesAuth::user()->role_id;
        return view('invoice.invoice',[
         'category'=>$category,
         'customer'=>$customer,
+        'userRol'=>$userRol
         ]);
     }
 

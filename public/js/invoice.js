@@ -43445,7 +43445,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -43460,7 +43459,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-  props: ['categorys', 'customers'],
+  props: ['categorys', 'customers', 'userrol'],
 
   mixins: [__WEBPACK_IMPORTED_MODULE_1__mixin_js__["a" /* default */], __WEBPACK_IMPORTED_MODULE_2__moment_mixin_js__["a" /* default */]],
 
@@ -43486,14 +43485,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       invoices: [],
       format: 'yyyy-MM-dd',
       url: base_url + 'invoice/',
-      isLoading: true
-
+      isLoading: true,
+      userRol: this.userrol
     };
   },
   created: function created() {
 
-    console.log(this.userLog);
-    console.log(this.customers);
+    console.log(this.userrol == 2);
     // this.hello();
 
     var _this = this;
@@ -46174,169 +46172,193 @@ var render = function() {
                     "table table-condensed table-hover table-bordered"
                 },
                 [
-                  _vm._m(0),
+                  _c("thead", [
+                    _c("tr", [
+                      _c("th", [_vm._v("Facturación")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Fecha")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Cliente")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Monto total")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Pagado")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Debido")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Vendido por")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Pagos")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Abonar")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Imprimir")]),
+                      _vm._v(" "),
+                      _c("th", [_vm._v("Editar")]),
+                      _vm._v(" "),
+                      _vm.userrol === 2
+                        ? _c("th", [_vm._v("Eliminar")])
+                        : _vm._e()
+                    ])
+                  ]),
                   _vm._v(" "),
                   _c(
                     "tbody",
-                    [
-                      _c("td", [_vm._v("hola " + _vm._s(_vm.userLog))]),
-                      _vm._v(" "),
-                      _vm._l(_vm.invoices.data, function(value, index) {
-                        return _c("tr", [
-                          _c("td", [_vm._v(_vm._s(value.id))]),
-                          _vm._v(" "),
-                          _c("td", [
+                    _vm._l(_vm.invoices.data, function(value, index) {
+                      return _c("tr", [
+                        _c("td", [_vm._v(_vm._s(value.id))]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(
+                            _vm._s(_vm._f("moment")(value.sell_date, "LL"))
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(_vm._s(value.customer.customer_name))
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(value.total_amount))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(value.paid_amount))]),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          {
+                            class: {
+                              "text-success": value.payment_status === 1,
+                              "text-danger": value.payment_status === 0
+                            }
+                          },
+                          [
                             _vm._v(
-                              _vm._s(_vm._f("moment")(value.sell_date, "LL"))
+                              "\n              " +
+                                _vm._s(value.total_amount - value.paid_amount) +
+                                "\n            "
                             )
-                          ]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _vm._v(_vm._s(value.customer.customer_name))
-                          ]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(value.total_amount))]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(value.paid_amount))]),
-                          _vm._v(" "),
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(value.user.name))]),
+                        _vm._v(" "),
+                        _c("td", [
                           _c(
-                            "td",
+                            "a",
                             {
-                              class: {
-                                "text-success": value.payment_status === 1,
-                                "text-danger": value.payment_status === 0
+                              staticClass:
+                                "btn bg-cyan btn-circle waves-effect waves-circle waves-float",
+                              attrs: {
+                                href: "",
+                                "data-toggle": "modal",
+                                "data-target": "#viewPayment"
+                              },
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.ViewPayment(value.id)
+                                }
                               }
                             },
                             [
-                              _vm._v(
-                                "\n              " +
-                                  _vm._s(
-                                    value.total_amount - value.paid_amount
-                                  ) +
-                                  "\n            "
-                              )
+                              _c("i", { staticClass: "material-icons" }, [
+                                _vm._v("remove_red_eye")
+                              ])
                             ]
-                          ),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(value.user.name))]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _c(
-                              "a",
-                              {
-                                staticClass:
-                                  "btn bg-cyan btn-circle waves-effect waves-circle waves-float",
-                                attrs: {
-                                  href: "",
-                                  "data-toggle": "modal",
-                                  "data-target": "#viewPayment"
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c(
+                            "a",
+                            {
+                              staticClass:
+                                "btn bg-blue-grey btn-circle waves-effect waves-circle waves-float",
+                              attrs: {
+                                href: "",
+                                "data-toggle": "modal",
+                                "data-target": "#smallModal"
+                              },
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.CreatePayment(value.id)
+                                }
+                              }
+                            },
+                            [
+                              _c("i", { staticClass: "material-icons" }, [
+                                _vm._v("attach_money")
+                              ])
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c(
+                            "a",
+                            {
+                              staticClass:
+                                "btn bg-orange btn-circle waves-effect waves-circle waves-float",
+                              attrs: {
+                                href: _vm.url + value.id,
+                                target: "_blank",
+                                type: "button"
+                              }
+                            },
+                            [
+                              _c("i", { staticClass: "material-icons" }, [
+                                _vm._v("print")
+                              ])
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c(
+                            "button",
+                            {
+                              staticClass:
+                                "btn bg-blue btn-circle waves-effect waves-circle waves-float",
+                              attrs: { type: "button" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.editInvoice(value.id)
+                                }
+                              }
+                            },
+                            [
+                              _c("i", { staticClass: "material-icons" }, [
+                                _vm._v("edit")
+                              ])
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _vm.userrol === 2
+                          ? _c("td", [
+                              _c(
+                                "button",
+                                {
+                                  staticClass:
+                                    "btn bg-pink btn-circle waves-effect waves-circle waves-float",
+                                  attrs: { type: "button" },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.deleteInvoice(value.id)
+                                    }
+                                  }
                                 },
-                                on: {
-                                  click: function($event) {
-                                    $event.preventDefault()
-                                    return _vm.ViewPayment(value.id)
-                                  }
-                                }
-                              },
-                              [
-                                _c("i", { staticClass: "material-icons" }, [
-                                  _vm._v("remove_red_eye")
-                                ])
-                              ]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _c(
-                              "a",
-                              {
-                                staticClass:
-                                  "btn bg-blue-grey btn-circle waves-effect waves-circle waves-float",
-                                attrs: {
-                                  href: "",
-                                  "data-toggle": "modal",
-                                  "data-target": "#smallModal"
-                                },
-                                on: {
-                                  click: function($event) {
-                                    $event.preventDefault()
-                                    return _vm.CreatePayment(value.id)
-                                  }
-                                }
-                              },
-                              [
-                                _c("i", { staticClass: "material-icons" }, [
-                                  _vm._v("attach_money")
-                                ])
-                              ]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _c(
-                              "a",
-                              {
-                                staticClass:
-                                  "btn bg-orange btn-circle waves-effect waves-circle waves-float",
-                                attrs: {
-                                  href: _vm.url + value.id,
-                                  target: "_blank",
-                                  type: "button"
-                                }
-                              },
-                              [
-                                _c("i", { staticClass: "material-icons" }, [
-                                  _vm._v("print")
-                                ])
-                              ]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _c(
-                              "button",
-                              {
-                                staticClass:
-                                  "btn bg-blue btn-circle waves-effect waves-circle waves-float",
-                                attrs: { type: "button" },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.editInvoice(value.id)
-                                  }
-                                }
-                              },
-                              [
-                                _c("i", { staticClass: "material-icons" }, [
-                                  _vm._v("edit")
-                                ])
-                              ]
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("td", [
-                            _c(
-                              "button",
-                              {
-                                staticClass:
-                                  "btn bg-pink btn-circle waves-effect waves-circle waves-float",
-                                attrs: { type: "button" },
-                                on: {
-                                  click: function($event) {
-                                    return _vm.deleteInvoice(value.id)
-                                  }
-                                }
-                              },
-                              [
-                                _c("i", { staticClass: "material-icons" }, [
-                                  _vm._v("delete")
-                                ])
-                              ]
-                            )
-                          ])
-                        ])
-                      })
-                    ],
-                    2
+                                [
+                                  _c("i", { staticClass: "material-icons" }, [
+                                    _vm._v("delete")
+                                  ])
+                                ]
+                              )
+                            ])
+                          : _vm._e()
+                      ])
+                    }),
+                    0
                   )
                 ]
               )
@@ -46348,40 +46370,7 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", [_vm._v("Facturación")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Fecha")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Cliente")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Monto total")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Pagado")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Debido")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Vendido por")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Pagos")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Abonar")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Imprimir")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Editar")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Eliminar")])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
